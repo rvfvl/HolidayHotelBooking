@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 import styled, { css } from "styled-components"
 import Logo from "components/Logo"
 import device from "theme/mediaQueries"
 import { NavLink } from "react-router-dom"
+import { FaBars, FaTimes } from "react-icons/fa"
 
 const NavbarWrapper = styled.div`
   position: relative;
@@ -26,6 +27,14 @@ const NavbarLinksWrapper = styled.div`
     box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
     width: 100%;
     padding: 0;
+    transform: translateX(-100%);
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+
+    ${({ isOpen }) =>
+      isOpen &&
+      css`
+        transform: translateX(0);
+      `};
   }
 
   @media ${device.small} {
@@ -51,7 +60,7 @@ const StyledLink = styled(NavLink)`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
     color: #000;
-    padding: 3rem;
+    padding: 2rem;
 
     &.active {
       background-color: #dbe8f9;
@@ -60,11 +69,32 @@ const StyledLink = styled(NavLink)`
   }
 `
 
+const MobileBreadcrumb = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  @media ${device.small} {
+    display: none;
+  }
+
+  svg {
+    color: #fff;
+  }
+`
+
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleMobileToggle = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
     <NavbarWrapper>
       <Logo title="Holiday Hotel Booking" />
-      <NavbarLinksWrapper>
+
+      <NavbarLinksWrapper isOpen={isOpen}>
         <StyledLink exact to="/" activeClassName="active">
           Home
         </StyledLink>
@@ -72,6 +102,10 @@ const Navbar = () => {
           Hotels
         </StyledLink>
       </NavbarLinksWrapper>
+
+      <MobileBreadcrumb onClick={handleMobileToggle}>
+        {isOpen ? <FaTimes /> : <FaBars />}
+      </MobileBreadcrumb>
     </NavbarWrapper>
   )
 }
