@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import { ThemeProvider } from "styled-components"
+import theme from "theme/theme"
+import Home from "pages/Home"
+import Hotels from "pages/Hotels"
+import SingleHotel from "pages/SingleHotel"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
+import routes from "config/routes"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path={routes.HOME} component={Home} />
+          <Route exact path={routes.HOTELS} component={Hotels} />
+          <Route path={routes.SINGLE_HOTEL} component={SingleHotel} />
+        </Switch>
+      </BrowserRouter>
+    </>
+  </ThemeProvider>
+)
 
-export default App;
+export default App
