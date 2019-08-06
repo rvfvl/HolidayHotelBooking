@@ -7,6 +7,7 @@ import SingleHotel from "pages/SingleHotel"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import routes from "config/routes"
 import Navbar from "components/Navbar"
+import Container from "components/Container"
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
@@ -32,11 +33,13 @@ const App = () => (
       <GlobalStyle />
       <BrowserRouter>
         <Navbar />
-        <Switch>
-          <Route exact path={routes.HOME} component={Home} />
-          <Route exact path={routes.HOTELS} component={Hotels} />
-          <Route path={routes.SINGLE_HOTEL} component={SingleHotel} />
-        </Switch>
+        <Container>
+          <Switch>
+            <Route exact path={routes.HOME} component={Home} />
+            <Route exact path={routes.HOTELS} component={Hotels} />
+            <Route path={routes.SINGLE_HOTEL} component={SingleHotel} />
+          </Switch>
+        </Container>
       </BrowserRouter>
     </>
   </ThemeProvider>
