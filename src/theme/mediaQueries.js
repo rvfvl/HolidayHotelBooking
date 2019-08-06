@@ -1,13 +1,7 @@
-const mediaQueries = {
-  small: "768",
-  medium: "1024",
-  large: "1216"
-}
+import theme from "theme/theme"
 
-const device = Object.keys(mediaQueries).reduce((acc, val) => {
-  acc[val] = args => `@media (min-width: ${mediaQueries[val]}px) {
-      ${args}
-  }`
+const device = Object.keys(theme.breakpoints).reduce((acc, val) => {
+  acc[val] = `(min-width: ${theme.breakpoints[val]})`
   return acc
 }, {})
 
