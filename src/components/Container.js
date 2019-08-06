@@ -4,6 +4,7 @@ import device from "theme/mediaQueries"
 
 const ContainerWrapper = styled.div`
   margin: 0 1rem;
+  padding: 2rem 0;
 
   @media ${device.small} {
     margin: 0 3rem;

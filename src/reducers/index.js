@@ -2,7 +2,7 @@ import { combineReducers } from "redux"
 import hotelsReducer from "reducers/hotelsReducer"
 
 const rootReducer = combineReducers({
-  hotelsReducer
+  hotels: hotelsReducer
 })
 
 export default rootReducer
