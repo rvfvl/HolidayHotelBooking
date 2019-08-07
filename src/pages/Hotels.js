@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { fetchHotels } from "actions"
 import Card from "components/Card"
 import styled from "styled-components"
+import FacetedSearch from "components/FacetedSearch"
 
 const CardWrapper = styled.div`
   display: flex;
@@ -19,11 +20,12 @@ const Hotels = () => {
   }, [])
 
   const renderCards = hotelList => {
-    return hotelList.map(hotel => <Card hotel={hotel} />)
+    return hotelList.map(hotel => <Card key={hotel.sys.id} hotel={hotel} />)
   }
 
   return (
     <div>
+      <FacetedSearch />
       <CardWrapper>{renderCards(hotelList)}</CardWrapper>
     </div>
   )

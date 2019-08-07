@@ -37,7 +37,6 @@ const StyledIcons = styled.div`
 
 const Card = ({ hotel }) => {
   const {
-    sys: { id },
     fields: {
       city,
       street,
@@ -52,7 +51,7 @@ const Card = ({ hotel }) => {
   } = hotel
 
   return (
-    <StyledCard key={id}>
+    <StyledCard>
       <CardImage src={url} alt={city} />
       <CardTitle>{city}</CardTitle>
       <small>{street}</small>
