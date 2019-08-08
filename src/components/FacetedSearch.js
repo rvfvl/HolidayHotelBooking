@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
+import { useSelector } from "react-redux"
 
 const FacetedSearchWrapper = styled.div`
   background-color: yellow;
@@ -21,7 +22,13 @@ const StyledSearchBy = styled.div`
 `
 
 const FacetedSearch = ({ setFilters }) => {
-  const [state, setState] = useState({ name: "", price: "600", stars: "" })
+  const hotelList = useSelector(state => state.hotels)
+
+  const [state, setState] = useState({
+    name: "",
+    price: "",
+    stars: ""
+  })
 
   const handleInput = e => {
     setState({ ...state, [e.target.name]: e.target.value })
@@ -29,7 +36,25 @@ const FacetedSearch = ({ setFilters }) => {
 
   useEffect(() => {
     setFilters(state)
-  }, [state, setFilters])
+  }, [state, setFilters, hotelList])
+
+  useEffect(() => {
+    const getMaxPrice = () => {
+      const prices = hotelList.map(
+        ({ fields: { pricePerNight } }) => pricePerNight
+      )
+
+      const max = Math.max(...prices)
+
+      if (Number.isInteger(max)) {
+        return max
+      } else {
+        return 0
+      }
+    }
+
+    setState({ ...state, price: getMaxPrice() })
+  }, [hotelList])
 
   return (
     <FacetedSearchWrapper>
