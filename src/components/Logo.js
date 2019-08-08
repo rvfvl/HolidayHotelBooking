@@ -10,7 +10,7 @@ const StyledLogoImage = styled.img`
 
 const StyledTitle = styled.div`
   color: ${({ theme }) => theme.navbarColor};
-  font-weight: 700;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: 2rem;
 `
 

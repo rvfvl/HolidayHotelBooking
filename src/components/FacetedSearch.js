@@ -16,7 +16,7 @@ const StyledSearchBy = styled.div`
   align-items: center;
 
   small {
-    font-weight: 700;
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
     margin-bottom: 5px;
   }
 `

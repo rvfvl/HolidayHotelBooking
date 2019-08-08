@@ -24,7 +24,6 @@ const NavbarLinksWrapper = styled.div`
     top: 100%;
     left: 0;
     background-color: #fff;
-    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
     width: 100%;
     padding: 0;
     transform: translateX(-100%);
