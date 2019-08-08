@@ -14,45 +14,48 @@ const CardWrapper = styled.div`
 const Hotels = () => {
   const dispatch = useDispatch()
   const hotelList = useSelector(state => state.hotels)
-  const [filteredList, setFilteredList] = useState({})
+  const [filters, setFilters] = useState({})
   const [updatedList, setUpdatedList] = useState([])
 
   useEffect(() => {
     dispatch(fetchHotels())
-  }, [])
+  }, [dispatch])
 
-  const filterList = list => {
-    let updatedList = list
+  useEffect(() => {
+    setUpdatedList(hotelList)
+  }, [hotelList])
 
-    if (filteredList.name !== "") {
-      updatedList = updatedList.filter(item =>
-        item.fields.hotelName
-          .toLowerCase()
-          .includes(filteredList.name.toLowerCase())
+  const filterList = () => {
+    let filteredList = updatedList
+
+    if (filters.name !== "") {
+      filteredList = filteredList.filter(item =>
+        item.fields.hotelName.toLowerCase().includes(filters.name.toLowerCase())
       )
     }
 
-    updatedList = updatedList.filter(
-      item => item.fields.pricePerNight <= filteredList.price
+    filteredList = filteredList.filter(
+      item => item.fields.pricePerNight <= filters.price
     )
 
-    if (filteredList.stars !== "") {
-      updatedList = updatedList.filter(
-        item => item.fields.stars === parseInt(filteredList.stars, 10)
+    if (filters.stars !== "") {
+      filteredList = filteredList.filter(
+        item => item.fields.stars === parseInt(filters.stars, 10)
       )
     }
 
-    setUpdatedList(updatedList)
+    return filteredList
   }
 
-  const renderCards = hotelList => {
+  const renderCards = () => {
+    const hotelList = filterList()
+
     return hotelList.map(hotel => <Card key={hotel.sys.id} hotel={hotel} />)
   }
 
   return (
     <div>
-      <FacetedSearch setFilteredList={setFilteredList} />
-      {console.log(updatedList)}
+      <FacetedSearch setFilters={setFilters} />
       <CardWrapper>{renderCards(hotelList)}</CardWrapper>
     </div>
   )

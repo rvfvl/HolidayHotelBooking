@@ -20,16 +20,16 @@ const StyledSearchBy = styled.div`
   }
 `
 
-const FacetedSearch = ({ setFilteredList }) => {
-  const [state, setState] = useState({ name: "", price: 600, stars: null })
+const FacetedSearch = ({ setFilters }) => {
+  const [state, setState] = useState({ name: "", price: "600", stars: "" })
 
   const handleInput = e => {
     setState({ ...state, [e.target.name]: e.target.value })
   }
 
   useEffect(() => {
-    setFilteredList(state)
-  }, [state])
+    setFilters(state)
+  }, [state, setFilters])
 
   return (
     <FacetedSearchWrapper>
