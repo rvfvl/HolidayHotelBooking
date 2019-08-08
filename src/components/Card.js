@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { MdLocalHotel } from "react-icons/md"
+import { FaBath, FaStar } from "react-icons/fa"
 
 const StyledCard = styled.div`
   text-align: center;
@@ -89,10 +90,10 @@ const Card = ({ hotel }) => {
           <MdLocalHotel /> {noOfRooms}
         </div>
         <div>
-          <MdLocalHotel /> {noOfBathrooms}
+          <FaBath /> {noOfBathrooms}
         </div>
         <div>
-          <MdLocalHotel /> {stars}
+          <FaStar /> {stars}
         </div>
       </StyledIcons>
     </StyledCard>

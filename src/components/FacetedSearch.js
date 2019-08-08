@@ -3,10 +3,12 @@ import styled from "styled-components"
 import { useSelector } from "react-redux"
 
 const FacetedSearchWrapper = styled.div`
-  background-color: yellow;
+  background-color: ${({ theme }) => theme.facetedSearchBackground};
+  color: #fff;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1rem;
 `
 
 const StyledSearchBy = styled.div`
@@ -59,7 +61,7 @@ const FacetedSearch = ({ setFilters }) => {
   return (
     <FacetedSearchWrapper>
       <StyledSearchBy>
-        <small>City</small>
+        <small>Hotel Name</small>
         <input type="text" name="name" id="name" onChange={handleInput} />
       </StyledSearchBy>
       <StyledSearchBy>
@@ -78,11 +80,11 @@ const FacetedSearch = ({ setFilters }) => {
         <small>Rating</small>
         <select defaultValue={state.stars} name="stars" onChange={handleInput}>
           <option value="">Choose rating</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+          <option value="1">{"\u2605".repeat(1)}</option>
+          <option value="2">{"\u2605".repeat(2)}</option>
+          <option value="3">{"\u2605".repeat(3)}</option>
+          <option value="4">{"\u2605".repeat(4)}</option>
+          <option value="5">{"\u2605".repeat(5)}</option>
         </select>
       </StyledSearchBy>
     </FacetedSearchWrapper>
