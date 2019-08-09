@@ -77,11 +77,12 @@ const Card = ({ hotel }) => {
           file: { url }
         }
       }
-    }
+    },
+    sys: { id }
   } = hotel
 
   return (
-    <StyledCard as={Link} to={`/hotels/${hotelName}`}>
+    <StyledCard as={Link} to={`/hotels/${id}`}>
       <CardImage src={url} alt={city} />
       <CardPrice>
         <span>${pricePerNight}</span>
