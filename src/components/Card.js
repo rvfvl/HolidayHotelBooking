@@ -2,14 +2,22 @@ import React from "react"
 import styled from "styled-components"
 import { MdLocalHotel } from "react-icons/md"
 import { FaBath, FaStar } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 const StyledCard = styled.div`
   text-align: center;
+  color: #000;
   margin: 1rem;
   padding: 1rem;
   box-shadow: ${({ theme }) => theme.cardShadow};
   flex: 1 0 1;
   position: relative;
+  transform: scale(0.9);
+  transition: transform 0.1s ease-in;
+
+  &:hover {
+    transform: scale(1);
+  }
 `
 
 const CardTitle = styled.div`
@@ -73,7 +81,7 @@ const Card = ({ hotel }) => {
   } = hotel
 
   return (
-    <StyledCard>
+    <StyledCard as={Link} to={`/hotels/${hotelName}`}>
       <CardImage src={url} alt={city} />
       <CardPrice>
         <span>${pricePerNight}</span>

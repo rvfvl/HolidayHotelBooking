@@ -38,7 +38,7 @@ const FacetedSearch = ({ setFilters }) => {
 
   useEffect(() => {
     setFilters(state)
-  }, [state, setFilters, hotelList])
+  }, [state])
 
   useEffect(() => {
     const getMaxPrice = () => {
