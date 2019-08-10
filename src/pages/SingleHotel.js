@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { fetchSingleHotel } from "actions"
 import styled from "styled-components"
 import Button from "components/Button"
+import device from "theme/mediaQueries"
 
 const MainImageWrapper = styled.div`
   position: relative;
@@ -23,12 +24,27 @@ const MainImageWrapper = styled.div`
 `
 
 const HotelDetailsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
   padding: 2rem;
+  margin-top: 1rem;
+  box-shadow: ${({ theme }) => theme.cardShadow};
+
+  h1 {
+    text-align: center;
+  }
 
   div {
     margin: 0 5rem;
+    flex: 1 1 0;
+  }
+`
+
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: center;
+
+  strong {
+    display: inline-block;
+    margin-bottom: 10px;
   }
 `
 
@@ -73,17 +89,31 @@ const SingleHotel = props => {
       </MainImageWrapper>
 
       <HotelDetailsWrapper>
-        <div>
-          <h1>{hotelName}</h1>
-          <p>City: {city}</p>
-          <p>Street: {street}</p>
-        </div>
-        <div>
-          <p>Price: ${pricePerNight} per night</p>
-          <p>Rating: {stars} stars</p>
-          <p>Number of rooms: {noOfRooms}</p>
-          <p>Number of bathrooms: {noOfBathrooms}</p>
-        </div>
+        <h1>{hotelName}</h1>
+        <FlexContainer>
+          <div>
+            <p>
+              <strong>City:</strong> {city}
+            </p>
+            <p>
+              <strong>Street:</strong> {street}
+            </p>
+          </div>
+          <div>
+            <p>
+              <strong>Price:</strong> ${pricePerNight} per night
+            </p>
+            <p>
+              <strong>Rating:</strong> {stars} stars
+            </p>
+            <p>
+              <strong>Number of rooms:</strong> {noOfRooms}
+            </p>
+            <p>
+              <strong>Number of bathrooms:</strong> {noOfBathrooms}
+            </p>
+          </div>
+        </FlexContainer>
       </HotelDetailsWrapper>
     </>
   )
