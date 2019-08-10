@@ -1,9 +1,8 @@
-import React, { useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { fetchSingleHotel } from "actions"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import Button from "components/Button"
-import device from "theme/mediaQueries"
+import client from "config/contentfulApi"
+import LoadingBar from "components/LoadingBar"
 
 const MainImageWrapper = styled.div`
   position: relative;
@@ -56,13 +55,22 @@ const SingleHotel = props => {
     }
   } = props
 
-  const dispatch = useDispatch()
+  const [hotelDetails, setHotelDetails] = useState({})
+  const [loading, setLoading] = useState(true)
+
+  const fetchHotelDetails = async () => {
+    const results = await client.getEntry(id)
+    setHotelDetails(results)
+    setLoading(false)
+  }
 
   useEffect(() => {
-    dispatch(fetchSingleHotel(id))
+    fetchHotelDetails()
   }, [])
 
-  const hotelDetails = useSelector(state => state.singleHotel)
+  if (loading) {
+    return <LoadingBar />
+  }
 
   const {
     fields: {

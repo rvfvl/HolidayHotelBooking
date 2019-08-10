@@ -1,2 +1,1 @@
 export const FETCH_HOTELS = "FETCH_HOTELS"
-export const FETCH_SINGLE_HOTEL = "FETCH_SINGLE_HOTEL"
