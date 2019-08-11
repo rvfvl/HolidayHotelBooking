@@ -8,11 +8,21 @@ const FavouriteHotels = () => {
     state => state.favouriteHotels.favouriteList
   )
 
+  const renderList = () => {
+    return favouriteHotelList.map(hotel => (
+      <Card key={hotel.sys.id} hotel={hotel} />
+    ))
+  }
+
+  const hasFavourites = favouriteHotelList.length
+
   return (
     <CardContainer>
-      {favouriteHotelList.map(hotel => (
-        <Card key={hotel.sys.id} hotel={hotel} />
-      ))}
+      {hasFavourites ? (
+        renderList()
+      ) : (
+        <h1>Your favourite hotel list is empty.</h1>
+      )}
     </CardContainer>
   )
 }

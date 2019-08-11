@@ -23,6 +23,8 @@ const NavbarLinksWrapper = styled.div`
     position: absolute;
     top: 100%;
     left: 0;
+    z-index: 10;
+    border-bottom: 1px solid ${({ theme }) => theme.primary}
     background-color: #fff;
     width: 100%;
     padding: 0;
