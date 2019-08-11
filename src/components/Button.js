@@ -10,6 +10,7 @@ const Button = styled.button`
   display: inline-block;
   border: none;
   transition: all 0.4s ease 0s;
+  vertical-align: middle;
 
   &:hover {
     background: #004ab3;

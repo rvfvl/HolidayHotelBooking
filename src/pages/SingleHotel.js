@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import styled from "styled-components"
 import Button from "components/Button"
 import client from "config/contentfulApi"
 import LoadingBar from "components/LoadingBar"
+import { addToFavourites, removeFromFavourites } from "actions"
 
 const MainImageWrapper = styled.div`
   position: relative;
@@ -57,6 +59,10 @@ const SingleHotel = props => {
 
   const [hotelDetails, setHotelDetails] = useState({})
   const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
+  const favouriteHotel = useSelector(state =>
+    state.favouriteHotels.favouriteList.filter(hotel => hotel.sys.id === id)
+  )
 
   const fetchHotelDetails = async () => {
     const results = await client.getEntry(id)
@@ -89,6 +95,16 @@ const SingleHotel = props => {
     }
   } = hotelDetails
 
+  const isFavouriteHotel = favouriteHotel.length
+
+  const handleFavouriteButton = () => {
+    if (isFavouriteHotel <= 0) {
+      dispatch(addToFavourites(hotelDetails))
+    } else {
+      dispatch(removeFromFavourites(hotelDetails))
+    }
+  }
+
   return (
     <>
       <MainImageWrapper>
@@ -105,6 +121,13 @@ const SingleHotel = props => {
             </p>
             <p>
               <strong>Street:</strong> {street}
+            </p>
+            <p>
+              <Button onClick={handleFavouriteButton}>
+                {isFavouriteHotel > 0
+                  ? "Remove from favourites"
+                  : "Add to favourites"}
+              </Button>
             </p>
           </div>
           <div>
