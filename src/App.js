@@ -3,6 +3,7 @@ import { ThemeProvider } from "styled-components"
 import theme from "theme/theme"
 import Home from "pages/Home"
 import Hotels from "pages/Hotels"
+import FavouriteHotels from "pages/FavouriteHotels"
 import SingleHotel from "pages/SingleHotel"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import routes from "config/routes"
@@ -36,6 +37,7 @@ const App = () => (
           <Route exact path={routes.HOME} component={Home} />
           <Route exact path={routes.HOTELS} component={Hotels} />
           <Route path={routes.SINGLE_HOTEL} component={SingleHotel} />
+          <Route exact path={routes.FAVOURITES} component={FavouriteHotels} />
         </Switch>
       </BrowserRouter>
     </>

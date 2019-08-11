@@ -2,14 +2,9 @@ import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { fetchHotels } from "actions"
 import Card from "components/Card"
-import styled from "styled-components"
+import CardContainer from "components/CardContainer"
 import FacetedSearch from "components/FacetedSearch"
-
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-`
+import LoadingBar from "components/LoadingBar"
 
 const Hotels = () => {
   const dispatch = useDispatch()
@@ -53,10 +48,14 @@ const Hotels = () => {
     return hotelList.map(hotel => <Card key={hotel.sys.id} hotel={hotel} />)
   }
 
+  if (hotelList.length === 0) {
+    return <LoadingBar />
+  }
+
   return (
     <div>
       <FacetedSearch setFilters={setFilters} />
-      <CardWrapper>{renderCards(hotelList)}</CardWrapper>
+      <CardContainer>{renderCards(hotelList)}</CardContainer>
     </div>
   )
 }

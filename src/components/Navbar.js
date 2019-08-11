@@ -100,6 +100,9 @@ const Navbar = () => {
         <StyledLink to="/hotels" activeClassName="active">
           Hotels
         </StyledLink>
+        <StyledLink to="/favourites" activeClassName="active">
+          Favourite Hotels
+        </StyledLink>
       </NavbarLinksWrapper>
 
       <MobileBreadcrumb onClick={handleMobileToggle}>
